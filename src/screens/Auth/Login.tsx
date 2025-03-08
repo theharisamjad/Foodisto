@@ -43,20 +43,6 @@ const Login = ({ navigation }: LoginProps) => {
     }, 1000);
   };
 
-  const handleSignup = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  };
-
-  const handleForgotPassword = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  };
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ImageBackground source={WelcomeBackground} style={[styles.background]}>
@@ -78,7 +64,7 @@ const Login = ({ navigation }: LoginProps) => {
             <TextInput
               label="Email"
               placeholder="Enter your email"
-              style={[styles.input, { color: paperTheme.colors.primary }]}
+              style={[styles.input]}
               mode="outlined"
               value={email}
               onChangeText={setEmail}
@@ -86,7 +72,7 @@ const Login = ({ navigation }: LoginProps) => {
             <TextInput
               label="Password"
               placeholder="Enter your password"
-              style={[styles.input, { color: paperTheme.colors.primary }]}
+              style={[styles.input]}
               mode="outlined"
               value={password}
               onChangeText={setPassword}
@@ -189,7 +175,6 @@ const styles = StyleSheet.create({
     fontSize: sizes.small,
     fontFamily: fonts.regular,
     marginBottom: 10,
-    marginTop: 10,
   },
   signup: {
     textAlign: "center",

@@ -6,10 +6,9 @@ import { PaperProvider } from "react-native-paper";
 import AppNavigator from "./navigation/AppNavigator";
 import useFonts from "./hooks/useFonts";
 import { store } from "./store";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { ThemeProvider, useTheme } from "./ThemeContext";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-
+import { SafeAreaView } from "react-native-safe-area-context";
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
@@ -54,21 +53,15 @@ const App: React.FC = () => {
       style={styles.container}
       onLayout={onLayoutRootView}
     >
-      <ThemeProvider>
-        <PaperProviderWrapper>
-          <SafeAreaProvider>
-            <SafeAreaView
-              edges={["top", "bottom"]}
-              style={styles.safeArea}
-              onLayout={onLayoutRootView}
-            >
-              <Provider store={store}>
-                <AppNavigator />
-              </Provider>
-            </SafeAreaView>
-          </SafeAreaProvider>
-        </PaperProviderWrapper>
-      </ThemeProvider>
+      <SafeAreaView style={styles.safeArea}>
+        <ThemeProvider>
+          <PaperProviderWrapper>
+            <Provider store={store}>
+              <AppNavigator />
+            </Provider>
+          </PaperProviderWrapper>
+        </ThemeProvider>
+      </SafeAreaView>
     </GestureHandlerRootView>
   );
 };
@@ -83,7 +76,7 @@ const PaperProviderWrapper: React.FC<{ children: React.ReactNode }> = ({
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "rgba(250, 253, 252, 0.6)",
+    backgroundColor: "transparent",
   },
   container: {
     flex: 1,
