@@ -1,23 +1,20 @@
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Button, Card, TextInput, Text } from "react-native-paper";
-import { height, width } from "../../constants/sizes";
+import { Button, TextInput, Text } from "react-native-paper";
+import { width } from "../../constants/sizes";
 import { fonts } from "../../constants/fonts";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useTheme } from "../../ThemeContext";
 type SignUpProps = {
   navigation: NativeStackNavigationProp<any>;
 };
 
 const SignUp = ({ navigation }: SignUpProps) => {
-  const { paperTheme } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   return (
     <ScrollView
-      style={{ backgroundColor: paperTheme.colors.background }}
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
@@ -56,14 +53,7 @@ const SignUp = ({ navigation }: SignUpProps) => {
           mode="outlined"
           style={[styles.input]}
         />
-        <Button
-          mode="contained"
-          onPress={() => {}}
-          style={[
-            styles.button,
-            { backgroundColor: paperTheme.colors.primary },
-          ]}
-        >
+        <Button mode="contained" onPress={() => {}} style={[styles.button]}>
           Sign Up
         </Button>
         <Button

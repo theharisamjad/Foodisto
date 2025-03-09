@@ -21,7 +21,7 @@ const CombinedDarkTheme = merge(MD3DarkTheme, DarkTheme);
 const lightTheme = {
   ...CombinedDefaultTheme,
   colors: {
-    primary: "rgb(192, 0, 27)",
+    primary: "#c0001b",
     onPrimary: "rgb(255, 255, 255)",
     primaryContainer: "rgb(255, 218, 215)",
     onPrimaryContainer: "rgb(65, 0, 4)",
@@ -51,12 +51,12 @@ const lightTheme = {
     inverseOnSurface: "rgb(251, 238, 236)",
     inversePrimary: "rgb(255, 179, 173)",
     elevation: {
-      level0: "transparent",
-      level1: "rgb(252, 238, 244)",
-      level2: "rgb(250, 231, 237)",
-      level3: "rgb(248, 223, 230)",
-      level4: "rgb(247, 221, 228)",
-      level5: "rgb(246, 216, 223)",
+      level0: "transparent", // No elevation
+      level1: "rgb(255, 255, 255)", // Pure white
+      level2: "rgb(250, 250, 250)", // Slightly darker
+      level3: "rgb(245, 245, 245)", // A bit darker
+      level4: "rgb(240, 240, 240)", // Even darker
+      level5: "rgb(235, 235, 235)", // Darkest off-white
     },
     surfaceDisabled: "rgba(32, 26, 25, 0.12)",
     onSurfaceDisabled: "rgba(32, 26, 25, 0.38)",
@@ -84,7 +84,7 @@ const darkTheme = {
     errorContainer: "rgb(147, 0, 10)",
     onErrorContainer: "rgb(255, 180, 171)",
     background: "rgb(32, 26, 25)",
-    onBackground: "rgb(237, 224, 222)",
+    onBackground: "rgb(43, 34, 32)",
     surface: "rgba(32, 26, 25, 0.4)",
     onSurface: "rgb(237, 224, 222)",
     surfaceVariant: "rgb(83, 67, 66)",

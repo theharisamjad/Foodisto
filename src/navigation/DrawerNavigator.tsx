@@ -5,8 +5,10 @@ import { DrawerActions, useNavigation } from "@react-navigation/native";
 import BottomTabNavigator from "./BottomTabNavigator";
 import CustomDrawerContent from "../components/CustomDrawerContent";
 import { useTheme } from "../ThemeContext";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { TouchableOpacity, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { Appbar } from "react-native-paper";
+import { width } from "../constants/sizes";
+import { scale } from "react-native-size-matters";
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
@@ -15,26 +17,19 @@ const DrawerNavigator = () => {
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={({ navigation }) => ({
-        headerTitle: "",
-        headerBackground: () => (
-          <View
-            style={[
-              styles.headerBackground,
-              { backgroundColor: paperTheme.colors.onBackground },
-            ]}
-          />
-        ),
-        headerLeft: () => (
-          <TouchableOpacity
-            onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-            style={{ marginLeft: 16 }}
-          >
-            <MaterialCommunityIcons
-              name="menu"
-              size={24}
+        header: () => (
+          <Appbar.Header style={styles.header}>
+            <Appbar.Action
+              style={[
+                styles.menuIcon,
+                { backgroundColor: paperTheme.colors.onBackground },
+              ]}
+              icon="menu"
+              size={scale(28)}
               color={paperTheme.colors.primary}
+              onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
             />
-          </TouchableOpacity>
+          </Appbar.Header>
         ),
       })}
     >
@@ -44,8 +39,13 @@ const DrawerNavigator = () => {
 };
 
 const styles = StyleSheet.create({
-  headerBackground: {
-    flex: 1,
+  header: {
+    backgroundColor: "transparent",
+  },
+  menuIcon: {
+    borderRadius: 32,
+    width: scale(50),
+    height: scale(50),
   },
 });
 

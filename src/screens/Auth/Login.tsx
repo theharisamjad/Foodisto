@@ -3,13 +3,11 @@ import {
   ImageBackground,
   Keyboard,
   StyleSheet,
-  Text,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 import React, { useState } from "react";
 import WelcomeBackground from "../../assets/images/welcome_image.jpg";
-import { Button, Card, TextInput } from "react-native-paper";
+import { Button, Card, TextInput, Text } from "react-native-paper";
 import { height, sizes, width } from "../../constants/sizes";
 import { fonts } from "../../constants/fonts";
 import { useTheme } from "../../ThemeContext";
@@ -46,21 +44,10 @@ const Login = ({ navigation }: LoginProps) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ImageBackground source={WelcomeBackground} style={[styles.background]}>
-        <Card
-          style={[styles.card, { backgroundColor: paperTheme.colors.surface }]}
-        >
+        <Card style={[styles.card]}>
           <Card.Content>
-            <Text style={[styles.title, { color: paperTheme.colors.primary }]}>
-              Foodisto
-            </Text>
-            <Text
-              style={[
-                styles.subtitle,
-                { color: paperTheme.colors.onBackground },
-              ]}
-            >
-              Login to your account
-            </Text>
+            <Text style={[styles.title]}>Foodisto</Text>
+            <Text style={[styles.subtitle]}>Login to your account</Text>
             <TextInput
               label="Email"
               placeholder="Enter your email"
@@ -84,29 +71,21 @@ const Login = ({ navigation }: LoginProps) => {
               </Text>
             )}
             <Text
-              style={[
-                styles.forgotPassword,
-                { color: paperTheme.colors.primary },
-              ]}
+              style={[styles.forgotPassword]}
               onPress={() => navigation.navigate("ForgotPassword")}
             >
               Forgot Password?
             </Text>
             <Button
               mode="contained"
-              style={[
-                styles.button,
-                { backgroundColor: paperTheme.colors.primary },
-              ]}
+              style={[styles.button]}
               onPress={handleLogin}
               loading={isLoading}
               disabled={isLoading}
             >
               Login
             </Button>
-            <Text
-              style={[styles.signup, { color: paperTheme.colors.onBackground }]}
-            >
+            <Text style={[styles.signup]}>
               Don't have an account?{" "}
               <Text
                 style={[
@@ -145,6 +124,7 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     height: height * 0.5,
     padding: 20,
+    opacity: 0.9,
   },
   title: {
     textAlign: "center",

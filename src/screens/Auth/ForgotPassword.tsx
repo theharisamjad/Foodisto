@@ -4,19 +4,16 @@ import { Button, TextInput, Text } from "react-native-paper";
 import { height, width } from "../../constants/sizes";
 import { fonts } from "../../constants/fonts";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useTheme } from "../../ThemeContext";
 
 type ForgotPasswordProps = {
   navigation: NativeStackNavigationProp<any>;
 };
 
 const ForgotPassword = ({ navigation }: ForgotPasswordProps) => {
-  const { paperTheme } = useTheme();
   const [email, setEmail] = useState("");
 
   return (
     <ScrollView
-      style={{ backgroundColor: paperTheme.colors.background }}
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
@@ -31,16 +28,9 @@ const ForgotPassword = ({ navigation }: ForgotPasswordProps) => {
           value={email}
           onChangeText={setEmail}
           mode="outlined"
-          style={[styles.input, { backgroundColor: paperTheme.colors.surface }]}
+          style={[styles.input]}
         />
-        <Button
-          mode="contained"
-          onPress={() => {}}
-          style={[
-            styles.button,
-            { backgroundColor: paperTheme.colors.primary },
-          ]}
-        >
+        <Button mode="contained" onPress={() => {}} style={[styles.button]}>
           Send Reset Link
         </Button>
         <Button

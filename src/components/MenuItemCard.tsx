@@ -22,10 +22,7 @@ export default function MenuItemCard({
 }: MenuItemCardProps) {
   const { paperTheme } = useTheme();
   return (
-    <Card
-      style={[styles.card, { backgroundColor: paperTheme.colors.onBackground }]}
-      onPress={onPress}
-    >
+    <Card style={[styles.card]} onPress={onPress}>
       <Card.Content style={styles.cardContent}>
         <Image source={{ uri: img }} style={styles.image} />
         <Text numberOfLines={1} style={[styles.title]}>
@@ -44,7 +41,6 @@ export default function MenuItemCard({
 
 const styles = StyleSheet.create({
   card: {
-    marginHorizontal: 16,
     width: width * 0.6,
     height: height * 0.38,
   },
@@ -78,6 +74,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: verticalScale(10),
     resizeMode: "cover",
+    borderRadius: 16,
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
   },
