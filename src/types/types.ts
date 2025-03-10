@@ -29,4 +29,16 @@ interface PizzaData {
   pizzas: PizzaItem[];
 }
 
-export type { PizzaData, PizzaItem };
+interface DessertItem {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  img: string;
+  quantity: number;
+}
+interface DessertData {
+  desserts: DessertItem[];
+}
+
+export type { PizzaData, PizzaItem, DessertData, DessertItem };

@@ -1,26 +1,36 @@
 import { View, StyleSheet, FlatList, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Chip, Text, TouchableRipple } from "react-native-paper";
 import { fonts } from "../../constants/fonts";
 import { scale } from "react-native-size-matters";
 import pizzaData from "../../constants/menudata.json";
-import { PizzaData } from "../../types/types";
+import { DessertData, PizzaData } from "../../types/types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import MenuItemCard from "../../components/MenuItemCard";
 import { height, width } from "../../constants/sizes";
 import { ScrollView } from "react-native-gesture-handler";
 import { useTheme } from "react-native-paper";
+import dessertData from "../../constants/dessertsdata.json";
 type HomeProps = {
   navigation: NativeStackNavigationProp<any>;
 };
 
 export default function Home({ navigation }: HomeProps) {
-  const menu = { pizzas: pizzaData } as PizzaData;
-  const [selectedCategory, setSelectedCategory] = useState(1);
+  const [data, setData] = useState<PizzaData | DessertData>(
+    pizzaData as unknown as PizzaData
+  );
   const categories = [
     { id: 1, name: "Pizza", icon: "pizza" },
     { id: 2, name: "Dessert", icon: "ice-cream" },
   ];
+  const [selectedCategory, setSelectedCategory] = useState(1);
+  useEffect(() => {
+    if (selectedCategory === 1) {
+      setData(pizzaData as unknown as PizzaData);
+    } else {
+      setData(dessertData as unknown as DessertData);
+    }
+  }, [selectedCategory]);
   const paperTheme = useTheme();
   return (
     <View style={[styles.container]}>
@@ -38,7 +48,9 @@ export default function Home({ navigation }: HomeProps) {
           {categories.map((category) => (
             <Chip
               key={category.id.toString()}
-              onPress={() => setSelectedCategory(category.id)}
+              onPress={() => {
+                setSelectedCategory(category.id);
+              }}
               style={styles.chip}
               icon={category.icon}
               selectedColor={paperTheme.colors.primary}
@@ -52,12 +64,13 @@ export default function Home({ navigation }: HomeProps) {
           style={styles.flatListPadding}
           contentContainerStyle={styles.flatList}
           showsHorizontalScrollIndicator={false}
-          data={menu.pizzas}
+          data={data as any}
           keyExtractor={(item) => `${item.id}-${item.name}`}
           renderItem={({ item }) => (
             <MenuItemCard
               name={item.name}
               price={item.price}
+              category={selectedCategory}
               img={item.img}
               veg={item.veg}
               onPress={() =>

@@ -11,6 +11,7 @@ interface MenuItemCardProps {
   img: string;
   veg: boolean;
   onPress: () => void;
+  category: number;
 }
 
 export default function MenuItemCard({
@@ -18,6 +19,7 @@ export default function MenuItemCard({
   price,
   img,
   veg,
+  category,
   onPress,
 }: MenuItemCardProps) {
   const { paperTheme } = useTheme();
@@ -28,9 +30,11 @@ export default function MenuItemCard({
         <Text numberOfLines={1} style={[styles.title]}>
           {name}
         </Text>
-        <Text style={[styles.veg, { color: paperTheme.colors.onSurface }]}>
-          {veg ? "Veg" : "Non-Veg"}
-        </Text>
+        {category === 1 && (
+          <Text style={[styles.veg, { color: paperTheme.colors.onSurface }]}>
+            {veg ? "Veg" : "Non-Veg"}
+          </Text>
+        )}
         <Text style={[styles.text, { color: paperTheme.colors.primary }]}>
           ${price}
         </Text>
@@ -74,7 +78,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: verticalScale(10),
     resizeMode: "cover",
-    borderRadius: 16,
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
   },
