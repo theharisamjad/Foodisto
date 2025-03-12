@@ -14,12 +14,14 @@ export default {
     },
     ios: {
       supportsTablet: true,
+      bundleIdentifier: "com.harisamjad05.foodisto",
     },
     android: {
       adaptiveIcon: {
         foregroundImage: "./src/assets/adaptive-icon.png",
         backgroundColor: "#ffffff",
       },
+      package: "com.harisamjad05.foodisto",
     },
     web: {
       favicon: "./src/assets/favicon.png",
