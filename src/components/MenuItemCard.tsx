@@ -1,17 +1,19 @@
 import React from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet } from "react-native";
+import { Image } from "expo-image";
 import { Card, Text } from "react-native-paper";
 import { scale, verticalScale } from "react-native-size-matters";
 import { height, width } from "../constants/sizes";
 import { fonts } from "../constants/fonts";
 import { useTheme } from "../ThemeContext";
+import { FoodType } from "../types/types";
 interface MenuItemCardProps {
   name: string;
   price: number;
   img: string;
   veg: boolean;
   onPress: () => void;
-  category: number;
+  type: FoodType;
 }
 
 export default function MenuItemCard({
@@ -19,18 +21,18 @@ export default function MenuItemCard({
   price,
   img,
   veg,
-  category,
   onPress,
+  type,
 }: MenuItemCardProps) {
   const { paperTheme } = useTheme();
   return (
     <Card style={[styles.card]} onPress={onPress}>
       <Card.Content style={styles.cardContent}>
-        <Image source={{ uri: img }} style={styles.image} />
+        <Image source={{ uri: img }} contentFit="cover" style={styles.image} />
         <Text numberOfLines={1} style={[styles.title]}>
           {name}
         </Text>
-        {category === 1 && (
+        {type === FoodType.PIZZA && (
           <Text style={[styles.veg, { color: paperTheme.colors.onSurface }]}>
             {veg ? "Veg" : "Non-Veg"}
           </Text>
@@ -77,7 +79,6 @@ const styles = StyleSheet.create({
     height: height * 0.2,
     alignSelf: "center",
     marginBottom: verticalScale(10),
-    resizeMode: "cover",
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
   },
