@@ -1,80 +1,74 @@
-# Expo Managed Boilerplate
+# Weather App with React Native and Expo
 
-This is a boilerplate for Expo-managed React Native applications, providing essential configurations and commonly used libraries to streamline development.
+A simple food ordering app built with **React Native**, **Expo**, and **Redux** for state management. This project was created to learn and explore modern tools for building mobile applications.
 
 ## Features
-- **React Navigation**: Seamless navigation with stack-based routing.
-- **Redux Toolkit**: State management with best practices.
-- **Axios**: Simplified HTTP requests.
-- **Environment Variables**: Secure configuration with dotenv.
-- **Expo Utilities**: Enhanced support for fonts, and splash screens.
-- **Reanimated & Gesture Handler**: Smooth animations and gesture-based interactions.
-- **Safe Area Context & Screens**: Improved layout handling for modern devices.
-- **Size Matters**: Responsive and scalable UI.
-- **SVG Support**: Easily transform and use SVG assets.
 
-## Installation
+- Real-Time Data: Fetches food items (pizza and desserts) from rapid API (https://rapidapi.com/kaushiksheel9/api/pizza-and-desserts).
+- Error Handling: Robust error handling ensures a smooth user experience.
+- Light & Dark Mode: Supports both themes for a seamless experience.
+- Responsive Design: Works flawlessly across iOS and Android devices.
+- State Management: Uses Redux for efficient state management.
+- Navigation: Built with React Navigation for smooth transitions between screens.
+- EAS Configured: Set up with Expo Application Services (EAS) for easy builds and deployments.
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-repo/boiler-plate-expo.git
-   cd boiler-plate-expo
-   ```
+## Tech Stack
+- **React Native**: For building cross-platform mobile apps.
+- **Expo**: For rapid development and testing.
+- **Redux**: For effective and reliable state management.
+- **TypeScript**: For type-safe code.
+- **React Native Paper**: For a polished and customizable UI.
+- **React Native Size Matters**: For handling responsiveness.
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- Expo CLI (install globally using `npm install -g expo-cli`)
+- Git
+
+### Installation
+1. **Clone the repository**:
+   `git clone https://github.com/theharisamjad/WeatherWorld.git`
+   `cd WeatherWorld`
 2. Install dependencies:
-   ```sh
-   npm install  # or yarn install
-   ```
-3. Start the development server:
-   ```sh
-   npx expo start
-   ```
+ `yarn install`
+3. Set up environment variables:
+Create a .env file in the root directory.
+Add your WeatherAPI key:
+ `WEATHER_API_KEY=your_api_key_here  `
 
-## Project Structure
-```
-boiler-plate-expo/
-│── src/
-│   ├── assets/        # Contains SVG images and font files
-│   ├── components/    # Reusable UI components
-│   ├── hooks/         # Custom Hooks
-│   ├── navigation/    # Navigation setup
-│   ├── features/      # Slices for Redux Toolkit
-│   ├── screens/       # App screens
-│   ├── constants/     # Constants Files
-│── .env               # Environment variables (use .env.example as a template)
-│── index.tsx          # Entry point of the application
-│── package.json       # Project dependencies
-│── README.md          # Project documentation
-```
-
-## Dependencies
-```json
-{
-  "@react-navigation/native": "^7.0.14",
-  "@react-navigation/stack": "^7.1.1",
-  "@reduxjs/toolkit": "^2.5.1",
-  "axios": "^1.7.9",
-  "dotenv": "^16.4.7",
-  "expo": "~52.0.37",
-  "expo-constants": "~17.0.7",
-  "expo-font": "~13.0.4",
-  "expo-splash-screen": "~0.29.22",
-  "expo-status-bar": "~2.0.1",
-  "react": "18.3.1",
-  "react-native": "0.76.7",
-  "react-native-gesture-handler": "~2.20.2",
-  "react-native-get-random-values": "~1.11.0",
-  "react-native-reanimated": "~3.16.1",
-  "react-native-safe-area-context": "4.12.0",
-  "react-native-screens": "~4.4.0",
-  "react-native-size-matters": "^0.4.2",
-  "react-native-svg-transformer": "^1.5.0",
-  "react-redux": "^9.2.0"
-}
-```
+5. Start the development server:
+ `yarn start`
+6. Open the app on your device:
+   Scan the QR code with the Expo Go app (available on iOS and Android).
+   Alternatively, run on an emulator
+   `yarn android` or simulator `yarn ios`
+7. To build the app for iOS or Android, use EAS:
+   `eas build --platform android` or `eas build --platform ios`
 
 ## Contributing
-Feel free to submit issues or pull requests to improve this boilerplate.
+Contributions are welcome! If you'd like to contribute, please follow these steps:
 
-## License
-This project is licensed under the MIT License.
+1. Fork the repository:
+ `git clone https://github.com/theharisamjad/WeatherWorld.git`
+ `cd WeatherWorld`
+3. Create a new branch:
+`git checkout -b feature/your-feature`
+4. Commit your changes: 
+`git commit -m 'Add some feature'`
+5. Push to the branch:
+`git push origin feature/your-feature`
+6. Open a pull request.
 
+## Acknowledgements
+1. Expo for the amazing development tools.
+2. Redux for effective state management.
+3. React Native Paper for the beautiful UI components
+4. React Native Size Matters for handling responsiveness.
+5. WeatherAPI.com for providing the weather data.
+ <!-- LICENSE -->
+# License
+Distributed under the `MIT` License. See [LICENSE](https://github.com/haris-0525/WeatherWorld/blob/main/LICENSE) for more information.
+
+Made with ❤️ by Haris Amjad
