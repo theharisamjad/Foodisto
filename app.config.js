@@ -7,6 +7,10 @@ export default {
     icon: "./src/assets/icon.png",
     userInterfaceStyle: "default",
     newArchEnabled: true,
+    extra: {
+      rapidApiKey: process.env.RAPID_API_KEY,
+      rapidApiHost: process.env.RAPID_API_HOST,
+    },
     splash: {
       image: "./src/assets/splash-icon.png",
       resizeMode: "contain",

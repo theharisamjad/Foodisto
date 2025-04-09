@@ -43,27 +43,15 @@ const AppNavigator = () => {
   return (
     <NavigationContainer theme={paperTheme}>
       <Stack.Navigator>
-        {!isAuthenticated ? (
-          <Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name="Auth"
-            component={AuthNavigator}
-          />
-        ) : (
-          <>
-            <Stack.Screen
-              options={{
-                headerShown: false,
-              }}
-              name="Main"
-              component={DrawerNavigator}
-            />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="Main"
+          component={DrawerNavigator}
+        />
 
-            <Stack.Screen name="FoodItemDetail" component={FoodItemDetail} />
-          </>
-        )}
+        <Stack.Screen name="FoodItemDetail" component={FoodItemDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

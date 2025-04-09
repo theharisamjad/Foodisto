@@ -1,37 +1,74 @@
-import { View, StyleSheet, FlatList, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import React, { useEffect, useState } from "react";
-import { Chip, Text, TouchableRipple } from "react-native-paper";
+import { Chip, Text } from "react-native-paper";
 import { fonts } from "../../constants/fonts";
 import { scale } from "react-native-size-matters";
-import pizzaData from "../../constants/menudata.json";
-import { DessertData, PizzaData } from "../../types/types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import MenuItemCard from "../../components/MenuItemCard";
 import { height, width } from "../../constants/sizes";
 import { ScrollView } from "react-native-gesture-handler";
 import { useTheme } from "react-native-paper";
-import dessertData from "../../constants/dessertsdata.json";
+
+import {
+  useGetAllPizzasQuery,
+  useGetAllDessertsQuery,
+} from "../../services/homeService";
+import { PizzaItem, DessertItem, FoodType } from "../../types/types";
 type HomeProps = {
   navigation: NativeStackNavigationProp<any>;
 };
 
 export default function Home({ navigation }: HomeProps) {
-  const [data, setData] = useState<PizzaData | DessertData>(
-    pizzaData as unknown as PizzaData
-  );
   const categories = [
-    { id: 1, name: "Pizza", icon: "pizza" },
-    { id: 2, name: "Dessert", icon: "ice-cream" },
+    { id: 1, name: "Pizza", icon: "pizza", type: FoodType.PIZZA },
+    { id: 2, name: "Dessert", icon: "ice-cream", type: FoodType.DESSERT },
   ];
-  const [selectedCategory, setSelectedCategory] = useState(1);
-  useEffect(() => {
-    if (selectedCategory === 1) {
-      setData(pizzaData as unknown as PizzaData);
-    } else {
-      setData(dessertData as unknown as DessertData);
-    }
-  }, [selectedCategory]);
+
+  const [data, setData] = useState<PizzaItem[] | DessertItem[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<FoodType>(
+    FoodType.PIZZA
+  );
   const paperTheme = useTheme();
+
+  const {
+    data: pizzas,
+    isLoading: pizzasLoading,
+    error: pizzasError,
+  } = useGetAllPizzasQuery();
+  const {
+    data: desserts,
+    isLoading: dessertsLoading,
+    error: dessertsError,
+  } = useGetAllDessertsQuery();
+
+  useEffect(() => {
+    if (selectedCategory === FoodType.PIZZA) {
+      const pizzaData = pizzas ?? [];
+      setData(pizzaData as PizzaItem[]);
+    } else {
+      const dessertData = desserts ?? [];
+      setData(dessertData as DessertItem[]);
+    }
+  }, [selectedCategory, pizzas, desserts]);
+
+  if (pizzasLoading || dessertsLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (pizzasError || dessertsError) {
+    return (
+      <View style={styles.container}>
+        <Text>Error loading pizzas. Please try again later.</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={[styles.container]}>
       <View style={styles.header}>
@@ -49,7 +86,7 @@ export default function Home({ navigation }: HomeProps) {
             <Chip
               key={category.id.toString()}
               onPress={() => {
-                setSelectedCategory(category.id);
+                setSelectedCategory(category.type);
               }}
               style={styles.chip}
               icon={category.icon}
@@ -70,14 +107,10 @@ export default function Home({ navigation }: HomeProps) {
             <MenuItemCard
               name={item.name}
               price={item.price}
-              category={selectedCategory}
+              type={selectedCategory}
               img={item.img}
               veg={item.veg}
-              onPress={() =>
-                navigation.navigate("FoodItemDetail", {
-                  item,
-                })
-              }
+              onPress={() => {}}
             />
           )}
         />

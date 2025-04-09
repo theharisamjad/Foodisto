@@ -41,4 +41,9 @@ interface DessertData {
   desserts: DessertItem[];
 }
 
+export const enum FoodType {
+  PIZZA = "pizza",
+  DESSERT = "dessert",
+}
+
 export type { PizzaData, PizzaItem, DessertData, DessertItem };

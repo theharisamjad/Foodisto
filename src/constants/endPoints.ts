@@ -1,3 +1,7 @@
 export const endPoints = {
-  yourEndPointName: "/v1/examples",
+  baseUrl: "https://pizza-and-desserts.p.rapidapi.com/",
+  getAllPizzas: "pizzas",
+  getAllDesserts: "desserts",
+  getPizzaById: "pizza/:id",
+  getDessertById: "dessert/:id",
 };
